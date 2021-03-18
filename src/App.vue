@@ -1,21 +1,22 @@
 <template>
   <div>
+    n的值：{{n}}
     <div class="row">
-      <Cell/>
-      <Cell/>
-      <Cell/>
+      <Cell @click="onClickCell()" :n="n"/>
+      <Cell @click="onClickCell()" :n="n"/>
+      <Cell @click="onClickCell()" :n="n"/>
     </div>
 
     <div class="row">
-      <Cell/>
-      <Cell/>
-      <Cell/>
+      <Cell @click="onClickCell()" :n="n"/>
+      <Cell @click="onClickCell()" :n="n"/>
+      <Cell @click="onClickCell()" :n="n"/>
     </div>
 
     <div class="row">
-      <Cell/>
-      <Cell/>
-      <Cell/>
+      <Cell @click="onClickCell()" :n="n"/>
+      <Cell @click="onClickCell()" :n="n"/>
+      <Cell @click="onClickCell()" :n="n"/>
     </div>
   </div>
 </template>
@@ -28,11 +29,24 @@ export default {
     Cell
   },
 
+  data(){
+    return {
+      n: 0
+    }
+  },
+
+  methods: {
+    onClickCell() {
+      console.log('某个Cell被点击了')
+      this.n += 1
+    }
+  }
+
 }
 </script>
 
 <style>
-.row{
+.row {
   display: flex;
 }
 </style>
