@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  props:['n'],
+  props:['n', 'finished'],
   data: function data() {
     return {
       a: false,
@@ -22,9 +22,13 @@ export default {
   methods:{
     onClickSelf(){
       if(this.text !== '') return
+      if(this.finished){
+        return
+      }
       this.a = true
       this.text = this.n % 2 === 0 ? 'x' : 'o'
-      this.$emit('click')
+      this.$emit('click', this.text)
+
     }
   }
 }
