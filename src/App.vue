@@ -1,26 +1,26 @@
 <template>
-  <div>
-    n的值：{{n}}
-    <div class="row">
-      <Cell @click="onClickCell(0, $event)" :n="n" :finished="finished"/>
-      <Cell @click="onClickCell(1, $event)" :n="n" :finished="finished"/>
-      <Cell @click="onClickCell(2, $event)" :n="n" :finished="finished"/>
-    </div>
+  <div class="wrapper">
+    第 {{n}} 手
+    <div class="chess">
+      <div class="row">
+        <Cell @click="onClickCell(0, $event)" :n="n" :finished="finished"/>
+        <Cell @click="onClickCell(1, $event)" :n="n" :finished="finished"/>
+        <Cell @click="onClickCell(2, $event)" :n="n" :finished="finished"/>
+      </div>
 
-    <div class="row">
-      <Cell @click="onClickCell(3, $event)" :n="n" :finished="finished"/>
-      <Cell @click="onClickCell(4, $event)" :n="n" :finished="finished"/>
-      <Cell @click="onClickCell(5, $event)" :n="n" :finished="finished"/>
-    </div>
+      <div class="row">
+        <Cell @click="onClickCell(3, $event)" :n="n" :finished="finished"/>
+        <Cell @click="onClickCell(4, $event)" :n="n" :finished="finished"/>
+        <Cell @click="onClickCell(5, $event)" :n="n" :finished="finished"/>
+      </div>
 
-    <div class="row">
-      <Cell @click="onClickCell(6, $event)" :n="n" :finished="finished"/>
-      <Cell @click="onClickCell(7, $event)" :n="n" :finished="finished"/>
-      <Cell @click="onClickCell(8, $event)" :n="n" :finished="finished"/>
+      <div class="row">
+        <Cell @click="onClickCell(6, $event)" :n="n" :finished="finished"/>
+        <Cell @click="onClickCell(7, $event)" :n="n" :finished="finished"/>
+        <Cell @click="onClickCell(8, $event)" :n="n" :finished="finished"/>
+      </div>
     </div>
-    {{map}}
-    {{result}}
-    {{finished}}
+    结果为：{{!result ? '胜负未定' : `${result} 方获胜`}}
   </div>
 </template>
 
@@ -53,28 +53,28 @@ export default {
       this.tell(text)
     },
 
-    tell(text){
+    tell(text) {
       const map = this.map
-      for(let i=0; i<3; i++){
-        if(map[i][0] && map[i][0] === map[i][1] && map[i][1] === map[i][2]){
-          this.result =  map[i][2]
+      for (let i = 0; i < 3; i++) {
+        if (map[i][0] && map[i][0] === map[i][1] && map[i][1] === map[i][2]) {
+          this.result = map[i][2]
         }
       }
 
-      for(let i=0; i<3; i++){
-        if(map[0][i] && map[0][i] === map[1][i] && map[1][i] === map[2][i]){
-          this.result =  map[2][i]
+      for (let i = 0; i < 3; i++) {
+        if (map[0][i] && map[0][i] === map[1][i] && map[1][i] === map[2][i]) {
+          this.result = map[2][i]
         }
       }
 
-      if(map[0][0] && map[0][0] === map[1][1] && map[1][1] === map[2][2]){
+      if (map[0][0] && map[0][0] === map[1][1] && map[1][1] === map[2][2]) {
         this.result = map[2][2]
       }
 
-      if(map[0][2] && map[0][2] === map[1][1] && map[1][1] === map[2][0]){
+      if (map[0][2] && map[0][2] === map[1][1] && map[1][1] === map[2][0]) {
         this.result = map[2][0]
       }
-      if(this.result){
+      if (this.result) {
         this.finished = true
       }
     }
@@ -87,5 +87,12 @@ export default {
 <style>
 .row {
   display: flex;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 </style>

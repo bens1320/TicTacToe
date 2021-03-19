@@ -1,9 +1,8 @@
 <template>
   <div>
-    {{n}}
     <div class="cell" @click="onClickSelf()">
       <template v-if="a">{{text}}</template>
-      <template v-else>空</template>
+      <template v-else></template>
     </div>
   </div>
 
@@ -36,7 +35,7 @@ export default {
 
 <style scoped>
 .cell{
-  border: 1px solid red;
+  border: 1px solid #000;
   width: 100px;
   height: 100px;
   display: flex;
